@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Visual</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <style media="screen">
+      h1, h3, form, #chart{
+        text-align: center;
+        font-family: times;
+      }
+      
+      #context_insight {
+        text-align: center;
+        font-family: times;
+        font-size:14pt;
+      }
+
+
+      #chart, #second_form, #context_insight  {
+        visibility: hidden;
+      }
+
+      body {
+        font: 10px sans-serif;
+      }
+
+      .axis path,
+      .axis line {
+        fill: none;
+        stroke: #000;
+        shape-rendering: crispEdges;
+      }
+
+      .bar {
+        fill: steelblue;
+      }
+
+      .x.axis path {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 >Tarea #1 - Visual Analytics</h1>
+    <h3 >¿Cree que el conflicto armado es la principal causa de homicidios en el país?</h3>
+    <br>
+    <form>
+      <label class="radio-inline">
+        <input type="radio" name="optradio" onclick="myFunction()">Si
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="optradio" onclick="myFunction()">No
+      </label>
+    </form>
+    <br>
+    <br>
+    <br>
+
+
+    <div id="chart"></div>
+    <br>
+    <div id="context_insight">
+      <p>Al comparar el total de homicidos por causa del conflicto armado, y los homicidios en accidentes de tránsito, se observa que a partir del año 2014 el número de víctimas mortales en accidentes de tránsito es superior a las personas asesinadas con ocasión del conflicto armado.</p>
+      <br>
+      <p>Este comportamiento se mantiene en los años posteriores, e incluso la diferencia entre el total de homicidos por accidentes y los asesinatos en conflicto aumenta, por lo que se puede concluir que, aún cuando todavía se mantienen algunos focos de violencia, hoy en Colombia está muriendo más gente en accidentes de tránsito que por el conflicto armado .</p>
+    </div>
+    <br>
+    <br>
+
+    <div id="second_form">
+      <h3>¿Considera que este es un resultado positivo del proceso de paz?</h3>
+      <br>
+      <form>
+        <label class="radio-inline">
+          <input type="radio" name="optradio">Si
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="optradio">No
+        </label>
+      </form>
+    </div>
+
+    <script type="text/javascript">
+    function myFunction() {
+      document.getElementById("second_form").style.visibility = "visible";
+      document.getElementById("chart").style.visibility = "visible";
+      document.getElementById("context_insight").style.visibility = "visible";
+    }
+    </script>
+    <script src="../static/barchart.js"></script>
+    <br>
+    <br>
+    <br>
+    <br>
+  </body>
+</html>
