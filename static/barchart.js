@@ -51,7 +51,7 @@ d3.csv("/static/data/data.csv", (error, data) => {
   var ageNames = d3.keys(data[0]).filter(key => key !== "State");
 
   data.forEach(d => {
-    d.ages = ageNames.map(name => {name: name, value: +d[name]} );
+    d.ages = ageNames.map(name => ({name: name, value: +d[name]}) );
   });
 
   x0.domain(data.map(d => d.State ));
