@@ -44,22 +44,23 @@ var svg = d3.select("#chart").append("svg")
 
 //Cargar los datos
 
-d3.csv("/static/data/data.csv", function(error, data) {
+//Podrias hacer uso de las Arrow Functions de ES6 para mejorar la legibilidad del código
+d3.csv("/static/data/data.csv", (error, data) => {
   if (error) throw error;
 
-  var ageNames = d3.keys(data[0]).filter(function(key) { return key !== "State"; });
+  var ageNames = d3.keys(data[0]).filter(key => key !== "State");
 
-  data.forEach(function(d) {
-    d.ages = ageNames.map(function(name) { return {name: name, value: +d[name]}; });
+  data.forEach(d => {
+    d.ages = ageNames.map(name => {name: name, value: +d[name]} );
   });
 
-  x0.domain(data.map(function(d) { return d.State; }));
+  x0.domain(data.map(d => d.State ));
   x1.domain(ageNames).rangeRoundBands([0, x0.rangeBand()]);
-  y.domain([0, d3.max(data, function(d) { return d3.max(d.ages, function(d) { return d.value; }); })]);
+  y.domain([0, d3.max(data, d => d3.max(d.ages, d => d.value ))]);
 
   svg.append("g")
       .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
+      .attr("transform", `translate(0, ${height})`)
       .call(xAxis);
 
   svg.append("g")
@@ -75,7 +76,7 @@ d3.csv("/static/data/data.csv", function(error, data) {
       .data(data)
       .enter().append("g")
       .attr("class", "state")
-      .attr("transform", function(d) { return "translate(" + x0(d.State) + ",0)"; });
+      .attr("transform", d => `translate(${x0(d.State)},0)`); // Aquí puedes hacer uso de los string con `` para interpolar valores
 
   state.selectAll("rect")
       .data(function(d) { return d.ages; })
@@ -90,7 +91,7 @@ d3.csv("/static/data/data.csv", function(error, data) {
       .data(ageNames.slice().reverse())
       .enter().append("g")
       .attr("class", "legend")
-      .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+      .attr("transform", (d, i) => `translate(0, ${i * 20})`);
 
   legend.append("rect")
       .attr("x", width - 18)
@@ -104,6 +105,6 @@ d3.csv("/static/data/data.csv", function(error, data) {
       .attr("dy", ".35em")
       .style("text-anchor", "end")
       .style("font-size","20px")
-      .text(function(d) { return d; });
+      .text(d => d);
 
 });
